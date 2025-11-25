@@ -1,27 +1,86 @@
-Supply Chain Dashboard
+Objective
 
-This Power BI Supply Chain Dashboard provides a complete, end-to-end analysis of product performance, inventory management, shipping efficiency, and supplier operations. It helps stakeholders monitor KPIs, identify bottlenecks, and make data-driven decisions to improve supply chain performance.
+The goal of this dashboard is to provide a clear, interactive, and daily-updated view of stock performance using Open, High, Low, Close, Adjusted Close, and Volume data.
+It helps users quickly understand price trends, moving averages, daily changes, and trading activity for        Ejected tickers.
+ Dataset sed
+The dashboard is built using the following fields:
+Ticker       Close     Open
+Adj Close
+Volume
+Date
+High   Low
 
-Dashboard Sections
-A. Sales Analysis Total Revenue, Total Products Sold,  Average Price, Revenue by Product Type, Shipping Cost by Product Type, Lead Time vs Revenue pattern,
-Insights : Skincare contributes the highest revenue.
-Cosmetics has lower revenue and may need marketing or stock adjustment. Lead time fluctuations impact revenue patterns
-Inventory Analysis
-Total Stock Levels, Average Lead Time, Order Quantity ,Stock Distribution by Product Type, Lead Time vs Defect Rate ,Detailed table with stock, lead time, defect %, and revenue per product type. 
-Insights: Stock is evenly distributed across skincare, haircare, and cosmetics. Lead time varies significantly and needs monitoring. Defect rate is low but requires continuous inspection.
- Shipping Analysis 
-Average Shipping Time ,Total Shipping Cost, Shipping Cost by Carriers, Geographical Map: Location vs Quantity, Lead Time vs Stock Trend, 
-Insights : Carrier B has the highest shipping cost. Shipping times vary and affect delivery performance. Specific regions have higher shipping frequency.
-Supplier Analysis Manufacturing Cost , Production Volume, Shipping Cost by Supplier, Supplier Performance Table (lead time, defect %, shipping cost),Lead Time Trend by SKU
-Insights : Supplier 1 & Supplier 2 are the most cost- efficient. Production volume is highest for skincare products. Some suppliers show higher lead time variation.
- Data Modeling Split data into Sales, Inventory, Shipping, and Supplier  tables. Established relationships using common fields like SKU and Supplier Name. No date table was required because no date column existed.
-created Measures (DAX)
-Total Revenue, Total Products Sold, Average Price, Total Stock, Average Lead Time, Total Shipping Cost, Manufacturing Cost, Production Volume, Defect Rate %Others for visualization, Step 
+Key Measures Created
 
- Dashboard Design Designed 4 dashboards (Sales, Inventory, Shipping, Supplier).
-Used: KPI Cards, Bar/Column charts .Donut charts, Line charts, Map visual, Matrix tables, Applied clean formatting and consistent color theme.
- Insight Extraction Analyzed product performance, supplier behavior, shipping efficiency, and stock status. Highlighted actionable insights that the client can use for decisions.
+Several DAX measures were calculated to enable insights:
+✔ Latest Close Price
+Shows the most recent closing price for the selected ticker/date.
+✔ Daily Change
+Daily Change = [Latest Close] – [Previous Close]
+✔ Daily % Change
+Daily % Change = DIVIDE([Daily Change], [Previous Close])
+✔ Moving Averages (MA20, MA50)
+MA20 = AVERAGEX(LASTN(20, VALUES(Data[Date])), [Close])
+MA50 = AVERAGEX(LASTN(50, VALUES(Data[Date])), [Close])
+Used to compare short–term and long–term trends.
+✔ Cumulative Volume / Returns
+Cumulative values to observe long-term progress.
 
- Conclusion 
-The Supply Chain Dashboard provides a complete and interactive view of the company’s end-to-end operations. It enables the client to : Monitor key performance indicators Identify delays in shipping and lead time Track supplier efficiency Improve inventory planning Control costs and increase product profitability
+Visuals Included in the Dashboard
+🔵 Line Chart – Price Trend with Moving Averages
+Shows:
+Daily close price
+MA20 (short-term trend)
+MA50 (long-term trend)
+Purpose: Identify trend direction and reversals.
+🔴  Column Chart – Daily Trading Volume
+Shows daily traded volume in billions. Helps track activity spikes and liquidity.
+🟣  KPI Cards
+Includes:
+Latest Volume
+Daily % Change
+Closing Price
+These KPIs give a quick high-level summary.
+🟢 Matrix/Table
+Displays:
+Last close price
+Sum of close
+Daily change
+Daily % change
+Sum of volume
+This gives detailed numeric insight for multiple tickers.
+🟡  Slicers
+To filter dashboard dynamically:
+Ticker
+Date
+Allows interactive comparison of stocks and time periods.Dashboard Workflow (Steps Followed)
+1. Imported stock dataset into Power BI.
+2. Cleaned data: ensured date format, sorted by date, removed blanks.
+3. Created DAX measures:
+Daily change
+% change
+Latest close
+MA20 / MA50
+Cumulative metrics
+4. Built KPIs for summary.
+5. Designed line charts for trend analysis.
+6. Designed volume chart for trading activity.
+7. Designed matrix table to show detailed data.
+8. Added slicers for ticker and date selection.
+9. Applied consistent theme, alignment, spacing, and labeling.
+10. Exported dashboard to PDF for client delivery.
+
+Conclusion
+The dashboard provides a clear and insightful view of stock performance, enabling the user/client to:
+Track real-time price movement
+Compare daily and historical trends
+Identify bullish/bearish signals with moving averages
+Understand trading activity with volume analysis
+Quickly filter and analyze multiple tickers
+
+This dashboard is suitable for daily monitoring, reporting, and investment decision support.
+
+
+
+
 
